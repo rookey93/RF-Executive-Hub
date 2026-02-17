@@ -50,13 +50,14 @@
   .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
   section { padding: 72px 0; border-top: 1px solid var(--gray-200); }
 
-  .section-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--red); margin-bottom: 8px;
+  /* NEW HEADER HIERARCHY */
+  .section-title-red {
+    font-family: var(--serif); font-size: 32px; font-weight: 700;
+    color: var(--red); line-height: 1.2; margin-bottom: 4px;
   }
-  .section-title {
-    font-family: var(--serif); font-size: 28px; font-weight: 700;
-    color: var(--blue); line-height: 1.2; margin-bottom: 32px;
+  .section-sub-blue {
+    font-size: 14px; font-weight: 600; color: var(--blue);
+    margin-bottom: 32px;
   }
 
   .btn {
@@ -71,17 +72,9 @@
   .btn-red:hover { background: #b82424; }
   .btn-outline { background: transparent; color: var(--blue); border: 1.5px solid var(--blue); }
   .btn-outline:hover { background: var(--blue-pale); }
-  .link-arrow {
-    font-size: 13px; font-weight: 600; color: var(--blue);
-    text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
-  }
-  .link-arrow:hover { color: var(--red); }
-  .link-arrow svg { width: 14px; height: 14px; }
 
   /* HERO */
-  .hero {
-    padding: 140px 0 72px; border-top: none;
-  }
+  .hero { padding: 140px 0 72px; border-top: none; }
   .hero h1 {
     font-family: var(--serif); font-size: 42px; font-weight: 700;
     color: var(--blue); line-height: 1.15; margin-bottom: 14px; max-width: 560px;
@@ -135,10 +128,6 @@
   .shift-cover .red-stripe {
     position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--red);
   }
-  .shift-info h3 {
-    font-family: var(--serif); font-size: 24px; color: var(--blue);
-    line-height: 1.25; margin-bottom: 10px;
-  }
   .shift-info p { font-size: 14px; color: var(--gray-600); margin-bottom: 24px; max-width: 420px; }
   .shift-editions { display: flex; gap: 8px; margin-top: 16px; }
   .edition-link {
@@ -149,7 +138,7 @@
   .edition-link:hover { border-color: var(--blue); color: var(--blue); }
 
   /* BLOG */
-  .blog-list { display: flex; flex-direction: column; gap: 0; }
+  .blog-list { display: flex; flex-direction: column; }
   .blog-item {
     display: flex; justify-content: space-between; align-items: center;
     padding: 20px 0; border-bottom: 1px solid var(--gray-100);
@@ -205,9 +194,6 @@
   /* SUBSCRIBE */
   #subscribe { background: var(--gray-100); }
   .subscribe-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-  .subscribe-info h3 {
-    font-family: var(--serif); font-size: 24px; color: var(--blue); margin-bottom: 10px;
-  }
   .subscribe-info p { font-size: 14px; color: var(--gray-600); margin-bottom: 20px; }
   .subscribe-list { list-style: none; }
   .subscribe-list li {
@@ -232,9 +218,6 @@
 
   /* ADVISORY */
   .advisory-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-  .advisory-info h3 {
-    font-family: var(--serif); font-size: 24px; color: var(--blue); margin-bottom: 10px;
-  }
   .advisory-info p { font-size: 14px; color: var(--gray-600); line-height: 1.65; }
   .advisory-form {
     background: var(--gray-100); border: 1px solid var(--gray-200);
@@ -261,6 +244,7 @@
     .shift-layout, .subscribe-layout, .advisory-layout { grid-template-columns: 1fr; gap: 32px; }
     .shift-cover { max-width: 220px; }
     .hero h1 { font-size: 32px; }
+    .section-title-red { font-size: 26px; }
     section { padding: 56px 0; }
     .nav-links { display: none; }
     .container { padding: 0 20px; }
@@ -299,8 +283,8 @@
 <!-- REPORTS -->
 <section id="reports">
   <div class="container">
-    <div class="section-label">Thematic Reports</div>
-    <h2 class="section-title">Emerging Technology</h2>
+    <h2 class="section-title-red">Thematic Reports</h2>
+    <p class="section-sub-blue">Emerging Technology</p>
     <div class="reports-grid">
       <div class="report-card">
         <span class="report-tag tag-blue">AI &amp; LLMs</span>
@@ -336,8 +320,8 @@
         <div class="red-stripe"></div>
       </div>
       <div class="shift-info">
-        <div class="section-label">Quarterly Report</div>
-        <h3>The Quarterly Shift</h3>
+        <h2 class="section-title-red">Quarterly Report</h2>
+        <p class="section-sub-blue" style="margin-bottom: 16px;">The Quarterly Shift</p>
         <p>Major trends in cyber threats, geopolitics, and emerging technology — distilled for executive decision-makers.</p>
         <a href="#" class="btn btn-blue">Download Q1 2026</a>
         <div class="shift-editions">
@@ -353,8 +337,8 @@
 <!-- BLOG -->
 <section id="blog">
   <div class="container">
-    <div class="section-label">Executive Blog</div>
-    <h2 class="section-title">What Leaders Are Reading</h2>
+    <h2 class="section-title-red">Executive Blog</h2>
+    <p class="section-sub-blue">What Leaders Are Reading</p>
     <div class="blog-list">
       <a href="#" class="blog-item">
         <h3>Why Cyber Risk Is Now a Boardroom Priority</h3>
@@ -391,8 +375,8 @@
 <!-- BRIEFINGS -->
 <section id="briefings">
   <div class="container">
-    <div class="section-label">Threat Briefings</div>
-    <h2 class="section-title">Recordings &amp; Upcoming</h2>
+    <h2 class="section-title-red">Threat Briefings</h2>
+    <p class="section-sub-blue">Recordings &amp; Upcoming</p>
     <div class="briefings-grid">
       <div class="briefing-card">
         <div class="player-area">
@@ -429,9 +413,8 @@
   <div class="container">
     <div class="subscribe-layout">
       <div class="subscribe-info">
-        <div class="section-label">Subscribe</div>
-        <h3>Get Intelligence by Email</h3>
-        <p>Reports and our weekly Executive Insikt Newsletter, delivered to your inbox.</p>
+        <h2 class="section-title-red">Subscribe</h2>
+        <p class="section-sub-blue" style="margin-bottom: 16px;">Get Intelligence by Email</p>
         <ul class="subscribe-list">
           <li>Weekly Executive Insikt Newsletter</li>
           <li>Thematic reports as published</li>
@@ -458,8 +441,8 @@
   <div class="container">
     <div class="advisory-layout">
       <div class="advisory-info">
-        <div class="section-label">Executive Risk Advisory</div>
-        <h3>Bespoke Intelligence for Your Organization</h3>
+        <h2 class="section-title-red">Executive Risk Advisory</h2>
+        <p class="section-sub-blue" style="margin-bottom: 16px;">Bespoke Intelligence for Your Organization</p>
         <p>Tailored threat briefings, geopolitical risk assessments, and dedicated Insikt Group analyst support — shaped around your priorities.</p>
       </div>
       <div class="advisory-form">
