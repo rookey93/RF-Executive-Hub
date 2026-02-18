@@ -50,7 +50,6 @@
   .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
   section { padding: 72px 0; border-top: 1px solid var(--gray-200); }
 
-  /* NEW HEADER HIERARCHY */
   .section-title-red {
     font-family: var(--serif); font-size: 32px; font-weight: 700;
     color: var(--red); line-height: 1.2; margin-bottom: 4px;
@@ -79,15 +78,43 @@
     font-family: var(--serif); font-size: 42px; font-weight: 700;
     color: var(--blue); line-height: 1.15; margin-bottom: 14px; max-width: 560px;
   }
-  .hero h1 span { color: var(--red); }
-  .hero p { font-size: 16px; color: var(--gray-600); margin-bottom: 28px; max-width: 440px; }
+  .hero h1 em { color: var(--red); font-style: normal; }
+  .hero p { font-size: 16px; color: var(--gray-600); margin-bottom: 28px; max-width: 480px; }
+  .hero p strong { color: var(--blue); font-weight: 600; }
   .hero-actions { display: flex; gap: 12px; }
 
-  /* REPORTS */
-  .reports-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  /* CAROUSEL */
+  .carousel-section .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 32px;
+  }
+  .carousel-nav { display: flex; gap: 8px; }
+  .carousel-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1.5px solid var(--gray-200); background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .carousel-btn:hover { border-color: var(--blue); background: var(--blue-pale); }
+  .carousel-btn svg { width: 16px; height: 16px; color: var(--blue); }
+  .carousel-track-wrapper {
+    overflow: hidden;
+    margin: 0 -8px;
+  }
+  .carousel-track {
+    display: flex; gap: 16px;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: grab;
+    padding: 0 8px 8px;
+  }
+  .carousel-track.dragging { cursor: grabbing; transition: none; }
+  .carousel-track .report-card {
+    min-width: 320px; flex-shrink: 0;
+  }
+
   .report-card {
     border: 1px solid var(--gray-200); border-radius: 8px; padding: 24px;
-    transition: all 0.2s;
+    transition: all 0.2s; user-select: none;
   }
   .report-card:hover { border-color: #ccc; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
   .report-tag {
@@ -177,7 +204,6 @@
     font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
   }
   .badge-rec { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
-  .badge-live { background: var(--red); color: #fff; }
   .player-duration {
     position: absolute; bottom: 8px; right: 10px;
     font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6);
@@ -240,7 +266,7 @@
   footer p { font-size: 12px; color: var(--gray-400); }
 
   @media (max-width: 768px) {
-    .reports-grid, .briefings-grid { grid-template-columns: 1fr; }
+    .briefings-grid { grid-template-columns: 1fr; }
     .shift-layout, .subscribe-layout, .advisory-layout { grid-template-columns: 1fr; gap: 32px; }
     .shift-cover { max-width: 220px; }
     .hero h1 { font-size: 32px; }
@@ -250,6 +276,7 @@
     .container { padding: 0 20px; }
     .form-row { flex-direction: column; }
     .blog-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .carousel-track .report-card { min-width: 280px; }
   }
 </style>
 </head>
@@ -264,15 +291,15 @@
       <a href="#blog">Blog</a>
       <a href="#briefings">Briefings</a>
       <a href="#subscribe">Subscribe</a>
-      <a href="#advisory" class="btn btn-blue" style="padding:7px 16px; font-size:12px;">Request Advisory</a>
+      <a href="#advisory" class="btn btn-blue" style="padding:7px 16px; font-size:12px; color:#fff;">Request Advisory</a>
     </div>
   </div>
 </nav>
 
 <section class="hero" style="border-top:none;">
   <div class="container">
-    <h1>Intelligence for leaders who <span>act first.</span></h1>
-    <p>Reports, trends, and threat briefings curated for executives.</p>
+    <h1>Intelligence for leaders who <em>act first.</em></h1>
+    <p>Reports, trends, and threat briefings curated for executives by <strong>Insikt Group</strong></p>
     <div class="hero-actions">
       <a href="#shift" class="btn btn-blue">Quarterly Shift Report</a>
       <a href="#subscribe" class="btn btn-outline">Subscribe</a>
@@ -280,26 +307,55 @@
   </div>
 </section>
 
-<!-- REPORTS -->
-<section id="reports">
+<!-- REPORTS CAROUSEL -->
+<section id="reports" class="carousel-section">
   <div class="container">
-    <h2 class="section-title-red">Thematic Reports</h2>
-    <p class="section-sub-blue">Emerging Technology</p>
-    <div class="reports-grid">
-      <div class="report-card">
-        <span class="report-tag tag-blue">AI &amp; LLMs</span>
-        <h3>Weaponized AI: Adversarial Use of LLMs</h3>
-        <div class="report-meta">Feb 2026 · 8 min read</div>
+    <div class="section-header">
+      <div>
+        <h2 class="section-title-red">Thematic Reports</h2>
+        <p class="section-sub-blue" style="margin-bottom:0;">Emerging Technology</p>
       </div>
-      <div class="report-card">
-        <span class="report-tag tag-red">Quantum</span>
-        <h3>Post-Quantum Readiness for Executives</h3>
-        <div class="report-meta">Jan 2026 · 6 min read</div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="prevBtn" aria-label="Previous">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 12l-4-4 4-4"/></svg>
+        </button>
+        <button class="carousel-btn" id="nextBtn" aria-label="Next">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4l4 4-4 4"/></svg>
+        </button>
       </div>
-      <div class="report-card">
-        <span class="report-tag tag-blue">Deepfakes</span>
-        <h3>Deepfake Threats to the C-Suite</h3>
-        <div class="report-meta">Jan 2026 · 7 min read</div>
+    </div>
+    <div class="carousel-track-wrapper">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="report-card">
+          <span class="report-tag tag-blue">AI &amp; LLMs</span>
+          <h3>Weaponized AI: Adversarial Use of LLMs</h3>
+          <div class="report-meta">Feb 2026 · 8 min read</div>
+        </div>
+        <div class="report-card">
+          <span class="report-tag tag-red">Quantum</span>
+          <h3>Post-Quantum Readiness for Executives</h3>
+          <div class="report-meta">Jan 2026 · 6 min read</div>
+        </div>
+        <div class="report-card">
+          <span class="report-tag tag-blue">Deepfakes</span>
+          <h3>Deepfake Threats to the C-Suite</h3>
+          <div class="report-meta">Jan 2026 · 7 min read</div>
+        </div>
+        <div class="report-card">
+          <span class="report-tag tag-red">IoT / OT</span>
+          <h3>Connected Devices: Expanding the Attack Surface</h3>
+          <div class="report-meta">Dec 2025 · 5 min read</div>
+        </div>
+        <div class="report-card">
+          <span class="report-tag tag-blue">Autonomous</span>
+          <h3>Agentic AI and Autonomous Cyber Operations</h3>
+          <div class="report-meta">Dec 2025 · 9 min read</div>
+        </div>
+        <div class="report-card">
+          <span class="report-tag tag-red">Space</span>
+          <h3>Satellite &amp; Space Infrastructure Threats</h3>
+          <div class="report-meta">Nov 2025 · 6 min read</div>
+        </div>
       </div>
     </div>
   </div>
@@ -469,6 +525,54 @@
 </footer>
 
 <script>
+  // Carousel
+  const track = document.getElementById('carouselTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const cardWidth = 336; // 320 + 16 gap
+  let pos = 0;
+
+  function getMaxScroll() {
+    return track.scrollWidth - track.parentElement.offsetWidth;
+  }
+
+  function updateTrack() {
+    pos = Math.max(0, Math.min(pos, getMaxScroll()));
+    track.style.transform = `translateX(-${pos}px)`;
+  }
+
+  nextBtn.addEventListener('click', () => { pos += cardWidth; updateTrack(); });
+  prevBtn.addEventListener('click', () => { pos -= cardWidth; updateTrack(); });
+
+  // Drag support
+  let isDragging = false, startX = 0, startPos = 0;
+
+  track.addEventListener('mousedown', (e) => {
+    isDragging = true; startX = e.clientX; startPos = pos;
+    track.classList.add('dragging');
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    pos = startPos - (e.clientX - startX);
+    updateTrack();
+  });
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+    track.classList.remove('dragging');
+  });
+
+  // Touch support
+  track.addEventListener('touchstart', (e) => {
+    isDragging = true; startX = e.touches[0].clientX; startPos = pos;
+  }, { passive: true });
+  track.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    pos = startPos - (e.touches[0].clientX - startX);
+    updateTrack();
+  }, { passive: true });
+  track.addEventListener('touchend', () => { isDragging = false; });
+
+  // Forms
   function handleSub(e) {
     e.preventDefault();
     const b = e.target.querySelector('button');
